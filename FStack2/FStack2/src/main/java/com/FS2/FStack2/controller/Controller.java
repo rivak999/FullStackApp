@@ -64,7 +64,7 @@ public class Controller {
     @Autowired
     DataSource ds;
     @DeleteMapping("/DeleteCandidat")
-    public String showUser(@RequestBody Candidat candidat )throws SQLException {
+    public String DeleteCan(@RequestBody Candidat candidat )throws SQLException {
         Connection con=ds.getConnection();
         String query="Delete entretien,candidat FROM entretien JOIN candidat ON candidat.username=entretien.candidate WHERE entretien.candidate=candidat.username AND candidat.id='"+candidat.getId()+"'";
         PreparedStatement preparedStm = con.prepareStatement(query);
@@ -73,7 +73,7 @@ public class Controller {
         PreparedStatement prepaedStm1 = con.prepareStatement(query1);
         preparedStm.execute(query1);
 
-       return"nknmkm";
+       return"deleted";
     }
     @DeleteMapping("/DeleteStage")
     public String DeleteStage(@RequestBody Stage stage )throws SQLException {
@@ -85,7 +85,7 @@ public class Controller {
         PreparedStatement prepaedStm1 = con.prepareStatement(query1);
         preparedStm.execute(query1);
 
-        return"nknmkm";
+        return"deleted";
     }
     @DeleteMapping("/DeletePlacement")
     public String DeletePlacement(@RequestBody Placement placement )throws SQLException {
@@ -97,10 +97,10 @@ public class Controller {
         PreparedStatement prepaedStm1 = con.prepareStatement(query1);
         preparedStm.execute(query1);
 
-        return"nknmkm";
+        return"deleted";
     }
     @PutMapping("/updateCandidat")
-    public String showUser2(@RequestBody Candidat candidat )throws SQLException {
+    public String UpdateCan(@RequestBody Candidat candidat )throws SQLException {
         Connection con=ds.getConnection();
         String query="UPDATE entretien JOIN candidat ON candidat.username=entretien.candidate SET candidat.fname='"+candidat.getFName()+"',candidat.lname='"+candidat.getLName()+"',candidat.name_opt='"+candidat.getNameOpt()+"',candidat.opt='"+candidat.getOpt()+"',candidat.username='"+candidat.getUsername()+"',entretien.candidate='"+candidat.getUsername()+"' WHERE candidat.username=entretien.candidate AND candidat.Id='"+ candidat.getId()+"'";
         PreparedStatement preparedStm = con.prepareStatement(query);
@@ -108,7 +108,7 @@ public class Controller {
         String query1="UPDATE candidat SET candidat.fname='"+candidat.getFName()+"',candidat.lname='"+candidat.getFName()+"',candidat.name_opt='"+candidat.getNameOpt()+"',candidat.opt='"+candidat.getOpt()+"',candidat.username='"+candidat.getUsername()+"'WHERE candidat.id='"+candidat.getId()+"'";
         PreparedStatement preparedStm1 = con.prepareStatement(query1);
         preparedStm.execute(query1);
-        return"nknmkm";
+        return"updated";
     }
     @PutMapping("/UpdateEntretien")
     public String UpdateEntretien(@RequestBody Entretien entretien )throws SQLException {
@@ -116,7 +116,7 @@ public class Controller {
         String query1="UPDATE entretien SET entretien.appointment='"+entretien.getAppointment()+"',entretien.interviewer='"+entretien.getInterviewer()+"',entretien.candidate='"+entretien.getCandidate()+"' WHERE entretien.id='"+entretien.getId()+"'";
         PreparedStatement preparedStm = con.prepareStatement(query1);
         preparedStm.execute(query1);
-        return"nknmkm";
+        return"updated";
     }
     @PutMapping("/updatestg")
     public String updateStg(@RequestBody Stage stage )throws SQLException {
@@ -127,7 +127,7 @@ public class Controller {
         String query1="UPDATE stage JOIN candidat ON candidat.name_opt=stage.name SET stage.name='"+stage.getName()+"',stage.debut='"+stage.getDebut()+"',stage.fin='"+stage.getFin()+"',candidat.name_opt='"+stage.getName()+"' WHERE candidat.opt='Stage' AND stage.name=candidat.name_opt AND stage.id='"+stage.getId()+"'";
         PreparedStatement preparedStm1 = con.prepareStatement(query1);
         preparedStm1.execute(query1);
-        return"nknmkm";
+        return"updated";
     }
     @PutMapping("/UpdatePlacement")
     public String UpdatePlacement(@RequestBody Placement placement )throws SQLException {
@@ -138,7 +138,7 @@ public class Controller {
         String query1="UPDATE placement JOIN candidat ON candidat.name_opt=placement.name SET placement.name='"+placement.getName()+"',placement.delay='"+placement.getDelay()+"',candidat.name_opt='"+placement.getName()+"' WHERE candidat.opt='Placement' AND placement.name=candidat.name_opt AND placement.id='"+placement.getId()+"'";
         PreparedStatement preparedStm1 = con.prepareStatement(query1);
         preparedStm1.execute(query1);
-        return"nknmkm";
+        return"updated";
     }
     @PostMapping("/addCandidat")
     public String addUser(@RequestBody Candidat candidat )throws SQLException {
@@ -149,7 +149,7 @@ public class Controller {
              PreparedStatement preparedStm = con.prepareStatement(query);
              preparedStm.execute(query);
 
-        return"nknmkm";
+        return"added";
     }
 
     @GetMapping("/getAllCandidats")
